@@ -118,11 +118,11 @@ boost::shared_ptr<HttpResponse> error_response(boost::shared_ptr<HttpRequest> pR
 std::pair<std::string, std::string> splitQueryString(const std::string& url) {
   size_t qsIndex = url.find('?');
   std::string path, queryString;
-  if (qsIndex == std::string::npos)
+  if (qsIndex == std::string::npos || qsIndex == url.length()-1)
     path = url;
   else {
     path = url.substr(0, qsIndex);
-    queryString = url.substr(qsIndex);
+    queryString = url.substr(qsIndex+1);
   }
 
   return std::pair<std::string, std::string>(path, queryString);
